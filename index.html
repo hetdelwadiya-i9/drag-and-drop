@@ -11,9 +11,22 @@
               <script src="./dist/app.js" defer></script>
        </head>
        <body>
+              <div>
+                     <nav class="navbar navbar-light bg-black">
+                            <div class="container py-3">
+                                   <a class="navbar-brand text-white" style="font-size: 1.5rem; font-weight: 600;">Project Management</a>
+                                   <form class="d-flex">
+                                          <a id="header-a" className="nav-link text-white" rel="noreferrer" href="https://github.com/HeT-Delwadiya" target="_blank" style="font-size: 1.5rem; font-weight: 600;">
+                                                 About
+                                          </a>
+                                   </form>
+                            </div>
+                     </nav>
+              </div>
+
               <template id="project-input">
               <form class="col-8 mx-auto">
-                     <div id="alert" class="" role="alert"></div>
+                     <div id="alert" class="mt-4"><div id="alert-inner" class="" role="alert"></div></div>
                      <div class="mt-5">
                             <div class="d-inline bg-black rounded-3 text-white p-2 px-4 fw-bold fs-3 ms-3">
                                    Add new project
@@ -48,5 +61,9 @@
               <div class="container card mt-5">
                      <div id="app"></div>
               </div>
+
+              <footer class="text-center bg-black text-white py-5">
+                     Copyright &copy; Drag & Drop 2022 | By Het Delwadiya
+              </footer>
        </body>
 </html>

@@ -25,11 +25,15 @@ class ProjectState {
         this.projects = [];
         this.listeners = [];
         this.addProject = (title, description, people) => {
+            const existingProject = this.projects.find(proj => proj.title === title);
+            if (existingProject)
+                return alertGenerator("Please add a project with different title!", "error");
             const newProject = new Project(this.projects.length + 1, title, description, people, ProjectStatus.Active);
             this.projects.push(newProject);
             for (const listenerFn of this.listeners) {
                 listenerFn(this.projects.slice());
             }
+            alertGenerator("Congratulations! Project added successfully.", "success");
         };
         this.moveProject = (projectId, newStatus) => {
             const project = this.projects.find(prj => prj.id === projectId);
@@ -80,12 +84,10 @@ const validate = (input) => {
 };
 const alertGenerator = (text, type) => {
     if (type === "error") {
-        document.getElementById("alert").className = "alert alert-danger text-center fw-bold mt-4";
-        document.getElementById("alert").innerHTML = text;
+        document.getElementById("alert").innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">` + text + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
     }
     else {
-        document.getElementById("alert").className = "alert alert-success text-center fw-bold mt-4";
-        document.getElementById("alert").innerHTML = text;
+        document.getElementById("alert").innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">` + text + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
     }
 };
 function autoBind(_, _2, descriptor) {
@@ -215,7 +217,6 @@ class ProjectForm {
             validate({ fieldName: "Description", value: this.description.value, maxLength: 20, minLength: 5 }) &&
             validate({ fieldName: "People", value: this.people.value, min: 2, max: 10 })) {
             projectState.addProject(this.titleInput.value, this.description.value, parseInt(this.people.value));
-            alertGenerator("Congratulations! Project added successfully.", "success");
             this.clearForm();
         }
     }

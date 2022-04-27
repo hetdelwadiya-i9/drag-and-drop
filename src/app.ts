@@ -21,6 +21,9 @@ class ProjectState {
        }
 
        addProject = (title: string, description: string, people: number) => {
+              const existingProject = this.projects.find(proj => proj.title === title)
+              if(existingProject)
+                     return alertGenerator("Please add a project with different title!", "error")
               const newProject = new Project(
                      this.projects.length+1,
                      title,
@@ -32,6 +35,7 @@ class ProjectState {
               for(const listenerFn of this.listeners) {
                      listenerFn(this.projects.slice())
               }
+              alertGenerator("Congratulations! Project added successfully.", "success")
        }
 
        moveProject = (projectId: number, newStatus: ProjectStatus) => {
@@ -99,11 +103,9 @@ const validate = (input: Validatable) => {
 
 const alertGenerator = (text: string, type: string) => {
        if(type==="error") {
-              document.getElementById("alert")!.className = "alert alert-danger text-center fw-bold mt-4"
-              document.getElementById("alert")!.innerHTML = text
+              document.getElementById("alert")!.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">`+text + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
        } else {
-              document.getElementById("alert")!.className = "alert alert-success text-center fw-bold mt-4"
-              document.getElementById("alert")!.innerHTML = text
+              document.getElementById("alert")!.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">`+text + `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
        }
 }
 
@@ -252,7 +254,6 @@ class ProjectForm {
                      validate({fieldName: "People", value: this.people.value, min: 2, max: 10})
               ) {
                      projectState.addProject(this.titleInput.value, this.description.value, parseInt(this.people.value))
-                     alertGenerator("Congratulations! Project added successfully.", "success")
                      this.clearForm();
               }    
        }

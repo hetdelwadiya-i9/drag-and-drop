@@ -49,6 +49,7 @@ textarea:focus {
 .projects {
   margin: 1rem;
   border: 1px solid #ffc107;
+  min-height: 200px;
 }
 
 .projects header {
@@ -116,4 +117,11 @@ textarea:focus {
   padding: 1rem;
   border: 1px solid #ff0062;
   background: #f7f7f7;
+}
+
+#header-a {
+       text-decoration: none;
+       color: white;
+       font-weight: 700;
+       font-size: 25px;
 }
