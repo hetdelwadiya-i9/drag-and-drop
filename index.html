@@ -31,16 +31,17 @@
                             <div class="d-inline bg-black rounded-3 text-white p-2 px-4 fw-bold fs-3 ms-3">
                                    Add new project
                             </div>
+                            <div class="ms-3 text-gray mt-3"><small>fields with <span style="color: red;">*</span> are required fields</small></div>
                      <div class="form-control mt-4">
-                            <label for="title">Title</label>
+                            <label for="title">Title<span style="color: red;">*</span></label>
                             <input type="text" id="title" class="w-100"/>
                      </div>
                      <div class="form-control">
-                            <label for="description">Description</label>
+                            <label for="description">Description<span style="color: red;">*</span></label>
                             <textarea id="description" class="w-100" rows="3"></textarea>
                      </div>
                      <div class="form-control">
-                            <label for="people">People</label>
+                            <label for="people">People<span style="color: red;">*</span></label>
                             <input type="number" class="w-100" id="people" step="1" />
                      </div>
                      <button class="btn btn-dark w-100 mt-4 mb-5" type="submit">ADD PROJECT</button>
@@ -62,7 +63,7 @@
                      <div id="app"></div>
               </div>
 
-              <footer class="text-center bg-black text-white py-5">
+              <footer class="text-center bg-black text-white py-5 mt-4">
                      Copyright &copy; Drag & Drop 2022 | By Het Delwadiya
               </footer>
        </body>

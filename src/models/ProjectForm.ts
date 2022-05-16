@@ -30,9 +30,9 @@ export class ProjectForm {
        @autoBind
        private handleSubmit(event: Event) {
               event.preventDefault();
-              if (validate({fieldName: "Title", value: this.titleInput.value, maxLength: 20, minLength: 5}) && 
-                     validate({fieldName: "Description", value: this.description.value, maxLength: 20, minLength: 5}) &&
-                     validate({fieldName: "People", value: this.people.value, min: 2, max: 10})
+              if (validate({fieldName: "title", value: this.titleInput.value, maxLength: 20, minLength: 5}) && 
+                     validate({fieldName: "description", value: this.description.value, maxLength: 20, minLength: 5}) &&
+                     validate({fieldName: "people", value: this.people.value, min: 2, max: 10})
               ) {
                      projectState.addProject(this.titleInput.value, this.description.value, parseInt(this.people.value))
                      this.clearForm();
